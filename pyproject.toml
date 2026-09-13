@@ -1,0 +1,23 @@
+[project]
+name = "course-robot"
+version = "0.1.0"
+description = "Synchronize Peak1 teacher schedules into SQLite and local reports."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.28,<1",
+    "google-auth>=2.40,<3",
+    "google-auth-oauthlib>=1.2,<2",
+    "python-dotenv>=1.1,<2",
+    "tzdata>=2025.2",
+]
+
+[project.scripts]
+course-robot = "course_robot.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/course_robot"]

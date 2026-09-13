@@ -1,0 +1,12 @@
+[Unit]
+Description=Run Peak1 course synchronization every 30 minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=30min
+Persistent=true
+Unit=course-robot.service
+
+[Install]
+WantedBy=timers.target
+

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>支點課表</title>
+  <link rel="stylesheet" href="schedule.css">
+</head>
+<body>
+  <h1>支點課表</h1>
+  <div id="sync-status" class="status" aria-live="polite">正在讀取課表…</div>
+  <section class="card">
+    <h2>目前課程</h2>
+    <table>
+      <thead>
+        <tr><th>時間</th><th>學生</th><th>年級</th><th>章節</th><th>教室</th></tr>
+      </thead>
+      <tbody id="schedule-body">
+        <tr><td colspan="5">正在載入…</td></tr>
+      </tbody>
+    </table>
+  </section>
+  <p id="generated-at" class="muted"></p>
+  <script src="schedule.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+.env
+.venv/
+.venv.windows.*/
+*:Zone.Identifier
+docs/tmp/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+data/
+output/
+logs/
+auth*.json
+cookies*.json
+credentials.json
+*google-token*.json

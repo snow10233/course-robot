@@ -1,0 +1,64 @@
+:root {
+  color-scheme: light;
+  font-family: system-ui, "Noto Sans TC", sans-serif;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 1120px;
+  padding: 24px;
+  color: #18212b;
+  background: #f5f7fa;
+}
+
+h1,
+h2 {
+  margin-bottom: 10px;
+}
+
+.status {
+  padding: 12px 16px;
+  border-left: 4px solid #087ea4;
+  background: white;
+}
+
+.status.error {
+  border-left-color: #b42318;
+  color: #b42318;
+}
+
+.card {
+  margin-top: 20px;
+  padding: 18px;
+  overflow-x: auto;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 12px #22334412;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid #e7ebef;
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  color: #52606d;
+  font-size: 0.9rem;
+}
+
+a {
+  color: #087ea4;
+}
+
+.muted {
+  color: #6b7785;
+  font-size: 0.85rem;
+}
