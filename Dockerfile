@@ -20,17 +20,24 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 FROM python:3.12.11-slim-bookworm AS runtime
 
+# 兩個服務共用同一個 image，差別只在啟動指令：
+#   backend  → backend-serve
+#   calendar → calendar-daemon
+ARG ENTRYPOINT_CMD="course-robot --help"
+
 ENV PATH="/app/.venv/bin:${PATH}" \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     TZ=Asia/Taipei
 
 RUN groupadd --gid 10001 course-robot \
-    && useradd --uid 10001 --gid 10001 --no-create-home --shell /usr/sbin/nologin course-robot
+    && useradd --uid 10001 --gid 10001 --no-create-home --shell /usr/sbin/nologin course-robot \
+    && mkdir -p /app/data \
+    && chown 10001:10001 /app/data
 
 WORKDIR /app
 COPY --from=builder --chown=10001:10001 /app/.venv /app/.venv
-COPY --chmod=0555 --chown=10001:10001 scripts/docker-entrypoint.sh /usr/local/bin/course-robot-worker
 
 USER 10001:10001
-ENTRYPOINT ["course-robot-worker"]
+ENV COURSE_ROBOT_ENTRYPOINT="${ENTRYPOINT_CMD}"
+ENTRYPOINT ["/bin/sh", "-c", "exec ${COURSE_ROBOT_ENTRYPOINT}"]

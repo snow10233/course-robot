@@ -1,7 +1,7 @@
 [project]
 name = "course-robot"
 version = "0.1.0"
-description = "Synchronize Peak1 teacher schedules into SQLite and local reports."
+description = "Sync Peak1 teacher schedules to Google Calendar."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [

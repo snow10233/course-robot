@@ -1,0 +1,44 @@
+name: course-robot-calendar
+
+# Calendar 服務：登入老師站取得課表，無狀態地重建到 Google Calendar。
+# 沒有資料庫；唯一需要保存的檔案是 OAuth token。
+# 每天在 CALENDAR_SYNC_AT（預設 00:00，Asia/Taipei）執行一次。
+services:
+  calendar:
+    image: course-robot:local
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+      args:
+        ENTRYPOINT_CMD: "course-robot calendar-daemon"
+    init: true
+    restart: unless-stopped
+    env_file:
+      - ../../.env
+    environment:
+      CALENDAR_SYNC_AT: "${CALENDAR_SYNC_AT:-00:00}"
+      TZ: Asia/Taipei
+    volumes:
+      # 只掛 token 所在目錄；沒有資料庫需要持久化。
+      - type: bind
+        source: ../../data
+        target: /app/data
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "course-robot", "calendar-check"]
+      interval: 6h
+      timeout: 60s
+      retries: 2
+      start_period: 60s
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+    stop_grace_period: 45s

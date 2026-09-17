@@ -3,7 +3,7 @@
   "compatibility_date": "2026-09-05",
   "workers_dev": false,
   "assets": {
-    "directory": "./oauth-site",
+    "directory": ".",
     "html_handling": "auto-trailing-slash"
   },
   "routes": [

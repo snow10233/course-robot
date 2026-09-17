@@ -4,14 +4,12 @@
 .venv
 .venv.windows.*
 **/*:Zone.Identifier
-docs/tmp
-deliverables
+docs/
 __pycache__
 *.py[cod]
 .pytest_cache
 credentials.json
 data
-deploy
 logs
 output
 tests

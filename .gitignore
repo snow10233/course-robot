@@ -13,3 +13,4 @@ auth*.json
 cookies*.json
 credentials.json
 *google-token*.json
+.tmp/
